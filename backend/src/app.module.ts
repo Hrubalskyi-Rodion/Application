@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { User } from '../users/user.entity';
 import { Event } from '../events/event.entity';
+import { EventsModule } from './events/events.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { Event } from '../events/event.entity';
       inject: [ConfigService],
     }),
     AuthModule,
+    EventsModule,
   ],
 })
 export class AppModule {}
