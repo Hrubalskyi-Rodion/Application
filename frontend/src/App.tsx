@@ -1,14 +1,27 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import './App.css';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import EventsList from './pages/EventsList';
+import EventDetails from './pages/EventDetails';
+import CreateEvent from './pages/CreateEvent';
+import MyEvents from './pages/MyEvents';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Navbar from './components/Navbar';
+import { useAuthStore } from './store/authStore';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const token = useAuthStore((state) => state.token);
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
-      <h1 className="text-4xl font-bold text-blue-600">Event Management App</h1>
+    <div className="min-h-screen bg-gray-50">
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<EventsList />} />
+        <Route path="/events/:id" element={<EventDetails />} />
+        <Route path="/create" element={token ? <CreateEvent /> : <Navigate to="/login" />} />
+        <Route path="/my-events" element={token ? <MyEvents /> : <Navigate to="/login" />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
     </div>
   );
 }
