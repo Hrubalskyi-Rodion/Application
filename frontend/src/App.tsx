@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Navbar from './components/Navbar';
 import { useAuthStore } from './store/authStore';
+import EditEvent from './pages/EditEvent';
 
 function App() {
   const token = useAuthStore((state) => state.token);
@@ -21,6 +22,7 @@ function App() {
         <Route path="/my-events" element={token ? <MyEvents /> : <Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/events/:id/edit" element={token ? <EditEvent /> : <Navigate to="/login" />} />
       </Routes>
     </div>
   );
