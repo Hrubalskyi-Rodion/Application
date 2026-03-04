@@ -78,15 +78,3 @@ npm run seed
 | POST   | /events/:id/join  | Join event        |
 | POST   | /events/:id/leave | Leave event       |
 | GET    | /users/me/events  | Get user events   |
-
-```
-
-Також створи `backend/.env.example`:
-```
-
-DB_HOST=localhost
-DB_PORT=5433
-DB_USERNAME=postgres
-DB_PASSWORD=postgres123
-DB_NAME=events_db
-JWT_SECRET=supersecretkey
